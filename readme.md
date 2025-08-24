@@ -158,6 +158,26 @@ CREATE INDEX idx_journal_line_entry_id ON sys.journal_line (entry_id);
 CREATE INDEX idx_journal_line_account_id ON sys.journal_line (account_id);
 ```
 
+## 📊 Diagrama Entidad-Relación
+
+El siguiente diagrama muestra la estructura de la base de datos y las relaciones entre las tablas:
+
+![Diagrama ER](DIAGRAM_ER.png)
+
+### Descripción de las Entidades:
+
+-   **`users`**: Almacena información de usuarios del sistema
+-   **`ledger_account`**: Representa las cuentas contables asociadas a cada usuario
+-   **`journal_entry`**: Registra las transacciones financieras (asientos contables)
+-   **`journal_line`**: Detalla las líneas de débito y crédito de cada asiento
+
+### Relaciones Principales:
+
+-   Un usuario puede tener múltiples cuentas contables (`users` → `ledger_account`)
+-   Un usuario puede crear múltiples asientos contables (`users` → `journal_entry`)
+-   Un asiento contable puede tener múltiples líneas (`journal_entry` → `journal_line`)
+-   Una cuenta contable puede ser referenciada en múltiples líneas (`ledger_account` → `journal_line`)
+
 ## 🏃‍♂️ Ejecutar la Aplicación
 
 ### Modo Desarrollo
