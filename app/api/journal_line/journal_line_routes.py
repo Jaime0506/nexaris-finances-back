@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
-from core.db import get_db
-from models.journal_line import JournalLine
-from models.journal_entry import JournalEntry
-from models.ledger_account import LedgerAccount
-from schemas.journal_line import JournalLineBase, JournalLineCreate, JournalLineRead, JournalLineUpdate
-from schemas.response import Response
+from app.core.db import get_db
+from app.models.journal_line import JournalLine
+from app.models.journal_entry import JournalEntry
+from app.models.ledger_account import LedgerAccount
+from app.schemas.journal_line import JournalLineBase, JournalLineCreate, JournalLineRead, JournalLineUpdate
+from app.schemas.response import Response
 from uuid import UUID
 from decimal import Decimal
 

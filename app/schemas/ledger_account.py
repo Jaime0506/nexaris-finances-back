@@ -1,7 +1,7 @@
 from datetime import datetime
 from uuid import UUID
 from pydantic import BaseModel
-from models.ledger_account import AccountKind
+from app.models.ledger_account import AccountKind
 
 # Para lectura/escritura
 class LedgerAccountBase(BaseModel):

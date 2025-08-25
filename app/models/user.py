@@ -5,7 +5,7 @@ from sqlalchemy.dialects.postgresql import UUID, TIMESTAMP
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import text
 
-from models.base import Base
+from app.models.base import Base
 
 class User(Base):
     __tablename__ = "users"

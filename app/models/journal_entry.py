@@ -3,7 +3,7 @@ from sqlalchemy import String, ForeignKey, func, text
 from sqlalchemy.dialects.postgresql import UUID, TIMESTAMP
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from models.base import Base
+from app.models.base import Base
 
 class JournalEntry(Base):
     __tablename__ = "journal_entry"

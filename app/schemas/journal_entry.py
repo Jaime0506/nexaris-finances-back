@@ -2,7 +2,7 @@ from datetime import datetime
 from uuid import UUID
 from pydantic import BaseModel
 from typing import List
-from schemas.journal_line import JournalLineCreate, JournalLineRead
+from app.schemas.journal_line import JournalLineCreate, JournalLineRead
 
 # Para lectura/escritura
 class JournalEntryBase(BaseModel):

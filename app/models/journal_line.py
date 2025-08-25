@@ -3,7 +3,7 @@ from sqlalchemy import ForeignKey, CheckConstraint, text, CHAR, NUMERIC
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from models.base import Base
+from app.models.base import Base
 
 class JournalLine(Base):
     __tablename__ = "journal_line"

@@ -4,7 +4,7 @@ from sqlalchemy import String, ForeignKey, func, text, CHAR
 from sqlalchemy.dialects.postgresql import UUID, TIMESTAMP, ENUM
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from models.base import Base
+from app.models.base import Base
 
 from enum import Enum
 
