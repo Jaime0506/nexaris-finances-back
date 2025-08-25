@@ -262,22 +262,76 @@ Una vez que la aplicación esté ejecutándose, puede acceder a:
 nexaris-finance-back/
 ├── app/
 │   ├── api/
-│   │   ├── routes.py
-│   │   └── user/
-│   │       └── user_routes.py
+│   │   ├── routes.py                    # Router principal que incluye todos los endpoints
+│   │   ├── user/
+│   │   │   └── user_routes.py          # Endpoints de usuarios (CRUD)
+│   │   ├── ledger_account/
+│   │   │   └── ledger_account_routes.py # Endpoints de cuentas contables
+│   │   ├── journal_entry/
+│   │   │   └── journal_entry_routes.py # Endpoints de asientos contables
+│   │   ├── journal_line/
+│   │   │   └── journal_line_routes.py  # Endpoints de líneas de asiento
+│   │   └── reports/
+│   │       └── reports_routes.py       # Endpoints de reportes financieros
 │   ├── core/
-│   │   ├── config.py
-│   │   └── db.py
-│   ├── main.py
+│   │   ├── config.py                   # Configuración de la aplicación
+│   │   └── db.py                       # Configuración de base de datos
+│   ├── main.py                         # Punto de entrada de la aplicación
 │   ├── models/
-│   │   ├── base.py
-│   │   ├── journal_entry.py
-│   │   ├── journal_line.py
-│   │   ├── ledger_account.py
-│   │   └── user.py
+│   │   ├── base.py                     # Modelo base para SQLAlchemy
+│   │   ├── user.py                     # Modelo de usuario
+│   │   ├── ledger_account.py           # Modelo de cuenta contable
+│   │   ├── journal_entry.py            # Modelo de asiento contable
+│   │   └── journal_line.py             # Modelo de línea de asiento
 │   └── schemas/
-│       ├── response.py
-│       └── user.py
-├── requirements.txt
-└── README.md
+│       ├── response.py                 # Esquema de respuesta genérica
+│       ├── user.py                     # Esquemas de usuario (Pydantic)
+│       ├── ledger_account.py           # Esquemas de cuenta contable
+│       ├── journal_entry.py            # Esquemas de asiento contable
+│       └── journal_line.py             # Esquemas de línea de asiento
+├── requirements.txt                    # Dependencias del proyecto
+├── DIAGRAM_ER.png                      # Diagrama entidad-relación
+└── README.md                           # Documentación del proyecto
 ```
+
+## 🚀 Endpoints Disponibles
+
+### 👤 Usuarios (`/api/v1/user`)
+
+-   `GET /user/{user_id}` - Obtener usuario por ID
+-   `POST /user/create` - Crear nuevo usuario
+-   `PUT /user/{user_id}` - Actualizar usuario
+-   `DELETE /user/{user_id}` - Eliminar usuario (soft delete)
+
+### 💰 Cuentas Contables (`/api/v1/ledger-account`)
+
+-   `GET /user/{user_id}` - Obtener todas las cuentas de un usuario
+-   `GET /user/{user_id}/kind/{kind}` - Obtener cuentas por tipo (asset, liability, equity, income, expense)
+-   `GET /{account_id}` - Obtener cuenta por ID
+-   `POST /create` - Crear nueva cuenta
+-   `PUT /{account_id}` - Actualizar cuenta
+-   `DELETE /{account_id}` - Eliminar cuenta (soft delete)
+
+### 📝 Asientos Contables (`/api/v1/journal-entry`)
+
+-   `GET /user/{user_id}` - Obtener todos los asientos de un usuario
+-   `GET /{entry_id}` - Obtener asiento por ID con sus líneas
+-   `POST /create` - Crear asiento simple
+-   `POST /create-with-lines` - Crear asiento completo con líneas
+-   `PUT /{entry_id}` - Actualizar asiento
+-   `DELETE /{entry_id}` - Eliminar asiento (soft delete)
+-   `GET /user/{user_id}/date-range` - Obtener asientos por rango de fechas
+
+### 📊 Líneas de Asiento (`/api/v1/journal-line`)
+
+-   `GET /entry/{entry_id}` - Obtener líneas de un asiento
+-   `GET /{line_id}` - Obtener línea por ID
+-   `POST /create` - Crear nueva línea
+-   `PUT /{line_id}` - Actualizar línea
+-   `DELETE /{line_id}` - Eliminar línea
+
+### 📈 Reportes Financieros (`/api/v1/reports`)
+
+-   `GET /balance-sheet/{user_id}` - Balance General
+-   `GET /income-statement/{user_id}` - Estado de Resultados
+-   `GET /account-movements/{user_id}/{account_id}` - Movimientos de cuenta
