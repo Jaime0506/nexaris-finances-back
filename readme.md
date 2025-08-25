@@ -2,6 +2,63 @@
 
 Sistema de gestión financiera personal desarrollado en Python con FastAPI y PostgreSQL.
 
+## 📱 Descripción del Proyecto
+
+**Nexaris Finances** es una aplicación móvil de finanzas personales que permite registrar de forma sencilla gastos, ingresos, transferencias y deudas. El sistema utiliza un libro mayor en doble entrada "por debajo" para garantizar que los saldos sean precisos, permite múltiples cuentas (banco, efectivo, tarjetas) y funciona offline con sincronización.
+
+### 🏗️ Arquitectura
+
+-   **Frontend**: React Native + Expo (aplicación móvil)
+-   **Backend**: FastAPI (API REST)
+-   **Base de Datos**: PostgreSQL
+-   **Funcionalidad**: Offline con sincronización
+
+## 🎯 ¿Qué Resuelve?
+
+### 1. **Captura Rápida y Consistente de Movimientos**
+
+-   Interfaz intuitiva para registrar transacciones de forma rápida
+-   Base sólida para implementar OCR/voz en el futuro
+-   Preparado para lectura semiautomática de notificaciones bancarias
+-   Validación automática de balance (débitos = créditos)
+
+### 2. **Clasificación Inteligente por Categorías**
+
+-   Categorías personalizables creadas por el usuario
+-   Estructura preparada para aprendizaje automático
+-   Clasificación automática de transacciones recurrentes
+-   Análisis de patrones de gasto
+
+### 3. **Saldos Reales y Precisos**
+
+-   Sistema de doble entrada que garantiza precisión contable
+-   Saldos reales por cuenta, incluyendo valores negativos
+-   Sin trucos contables ni aproximaciones
+-   Trazabilidad completa de cada transacción
+
+### 4. **Trazabilidad Clara del Dinero**
+
+-   Seguimiento detallado de "en qué se fue el dinero"
+-   Control de deudas de tarjetas y préstamos
+-   Historial completo de movimientos por cuenta
+-   Reportes financieros automáticos (Balance General, Estado de Resultados)
+
+### 5. **Base Sólida para Escalabilidad**
+
+-   Arquitectura preparada para presupuestos
+-   Sistema de metas financieras
+-   Alertas y notificaciones inteligentes
+-   Sin necesidad de reescribir el modelo de datos
+
+## 🔧 Características Técnicas
+
+-   **Contabilidad de Doble Entrada**: Garantiza precisión en todos los cálculos
+-   **Múltiples Cuentas**: Banco, efectivo, tarjetas de crédito, inversiones
+-   **Funcionamiento Offline**: Sincronización automática cuando hay conexión
+-   **API REST**: Interfaz clara para integración con aplicaciones móviles
+-   **Base de Datos Robusta**: PostgreSQL con transacciones ACID
+-   **Validaciones Automáticas**: Balance de asientos, existencia de cuentas, etc.
+
 ## 📋 Requisitos Previos
 
 -   Python 3.11 o superior
