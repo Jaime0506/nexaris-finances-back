@@ -20,5 +20,5 @@ class JournalLine(Base):
     amount: Mapped[str] = mapped_column(NUMERIC(18, 2), nullable=False)
     side: Mapped[str] = mapped_column(CHAR(1), nullable=False)
 
-    entry = relationship("JournalEntry", back_populates="lines")
-    account = relationship("LedgerAccount", back_populates="lines")
+    entry = relationship("JournalEntry", back_populates="lines", lazy="selectin")
+    account = relationship("LedgerAccount", back_populates="lines", lazy="selectin")

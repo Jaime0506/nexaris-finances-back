@@ -30,3 +30,5 @@ class User(Base):
     )
 
     # Relaciones
+    accounts = relationship("LedgerAccount", back_populates="user", cascade="all, delete-orphan")
+    journal_entries = relationship("JournalEntry", back_populates="user", cascade="all, delete-orphan")

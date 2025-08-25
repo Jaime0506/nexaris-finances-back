@@ -3,15 +3,11 @@ from core.config import settings
 from fastapi import FastAPI
 
 from api.routes import router as api_router
-from api.user.user_routes import router as user_router
 
-app = FastAPI(title="Nexaris Finance Back", description="API for the Nexaris Finance Backend", prefix="/api/v1")
+app = FastAPI(title="Nexaris Finance Back", description="API for the Nexaris Finance Backend")
 
-# Incluye el router de la API
-app.include_router(api_router)
-
-# Api de users
-app.include_router(user_router)
+# Incluye el router de la API (que ya incluye todas las rutas)
+app.include_router(api_router, prefix="/api/v1")
 
 # print(settings.model_dump())
 

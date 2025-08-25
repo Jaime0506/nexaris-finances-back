@@ -18,4 +18,4 @@ class JournalEntry(Base):
     deleted_at: Mapped[datetime | None] = mapped_column(TIMESTAMP(timezone=True))
 
     user = relationship("User", back_populates="journal_entries")
-    lines = relationship("JournalLine", back_populates="entry", cascade="all, delete-orphan")
+    lines = relationship("JournalLine", back_populates="entry", lazy="selectin", cascade="all, delete-orphan")

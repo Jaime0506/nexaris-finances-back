@@ -9,11 +9,11 @@ from models.base import Base
 from enum import Enum
 
 class AccountKind(str, Enum):
-    ASSET = "asset"
-    LIABILITY = "liability"
-    EQUITY = "equity"
-    INCOME = "income"
-    EXPENSE = "expense"
+    asset = "asset"
+    liability = "liability"
+    equity = "equity"
+    income = "income"
+    expense = "expense"
 
 pg_account_kind = ENUM(AccountKind, name="account_kind", create_type=False)
 

@@ -13,7 +13,7 @@ router = APIRouter(prefix="/user", tags=["user"])
 # OBTENGO TODOS LOS USUARIOS
 @router.get("/get-all-users", response_model=Response[list[UserRead]])
 async def get_all_users(db: AsyncSession = Depends(get_db)):
-    result = await db.execute(select(User))
+    result = await db.execute(select(User).where(User.is_active == True))
     users = result.scalars().all()
 
     return Response(
@@ -25,7 +25,7 @@ async def get_all_users(db: AsyncSession = Depends(get_db)):
 # OBTENGO UN USUARIO POR ID
 @router.get("/get-user-by-id/{user_id}", response_model=Response[UserRead])
 async def get_user_by_id(user_id: UUID, db: AsyncSession = Depends(get_db)):
-    result = await db.execute(select(User).where(User.id == user_id))
+    result = await db.execute(select(User).where(User.id == user_id).where(User.is_active == True))
     user = result.scalar_one_or_none()
 
     if not user:
@@ -74,3 +74,18 @@ async def update_user(user_id: UUID, payload: UserUpdate, db: AsyncSession = Dep
     await db.refresh(user)
 
     return Response(status="200", data=user, message="User updated successfully")
+
+@router.delete("/delete-user/{user_id}", response_model=Response[UserRead])
+async def delete_user(user_id: UUID, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(User).where(User.id == user_id))
+    user = result.scalar_one_or_none()
+
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    
+    user.is_active = False
+
+    await db.commit()
+    await db.refresh(user)
+
+    return Response(status="200", data=user, message="User deleted successfully")
